@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.uniitconverter.ui.theme.UniitConverterTheme
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,12 @@ fun UnitConverter() {
     var iExpanded by remember { mutableStateOf(false) }
     var oExpanded by remember { mutableStateOf(false) }
     val conversionFactor = remember { mutableStateOf(0.01) }
+
+    fun convertUnits() {
+        val inputValuesDouble = inputValue.toDoubleOrNull() ?: 0.0
+        val result = (inputValuesDouble * conversionFactor.value * 100.0).roundToInt() / 100.0
+        outputValue = result.toString()
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -94,19 +101,35 @@ fun UnitConverter() {
                             iExpanded = false
                             inputUnit = "Centimeters"
                             conversionFactor.value = 0.01
+                            convertUnits()
                         }
                     )
                     DropdownMenuItem(
                         text = { Text("Meters") },
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            iExpanded = false
+                            inputUnit = "Meters"
+                            conversionFactor.value = 1.0
+                            convertUnits()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("Feet") },
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            iExpanded = false
+                            inputUnit = "Feet"
+                            conversionFactor.value = 0.3048
+                            convertUnits()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("Millimeters") },
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            iExpanded = false
+                            inputUnit = "Millimeters"
+                            conversionFactor.value = 0.001
+                            convertUnits()
+                        }
                     )
                 }
             }
