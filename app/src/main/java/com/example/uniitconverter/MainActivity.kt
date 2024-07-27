@@ -81,6 +81,7 @@ fun UnitConverter() {
             value = inputValue,
             onValueChange = {
                 inputValue = it
+                convertUnits()
             },
             label = { Text("Enter Value")}
         )
@@ -149,7 +150,7 @@ fun UnitConverter() {
                         onClick = {
                             oExpanded = false
                             outputUnit = "Centimeters"
-                            conversionFactor.value = 0.01
+                            oConversionFactor.value = 0.01
                             convertUnits()
                         }
                     )
@@ -158,7 +159,7 @@ fun UnitConverter() {
                         onClick = {
                             oExpanded = false
                             outputUnit = "Meters"
-                            conversionFactor.value = 1.00
+                            oConversionFactor.value = 1.00
                             convertUnits()
                         }
                     )
@@ -167,7 +168,7 @@ fun UnitConverter() {
                         onClick = {
                             oExpanded = false
                             outputUnit = "Feet"
-                            conversionFactor.value = 0.3048
+                            oConversionFactor.value = 0.3048
                             convertUnits()
                         }
                     )
@@ -176,7 +177,7 @@ fun UnitConverter() {
                         onClick = {
                             oExpanded = false
                             outputUnit = "Millimeters"
-                            conversionFactor.value = 0.001
+                            oConversionFactor.value = 0.001
                             convertUnits()
                         }
                     )
